@@ -31,7 +31,7 @@ export function middleware(request: NextRequest) {
   if (subdomain) {
     // Subdomain available, rewriting
     console.log(
-      `>>> Rewriting: ${url.pathname} to /status-page/${subdomain}${url.pathname}`
+      `>>> Rewriting: ${url.pathname} to /project/${subdomain}${url.pathname}`
     );
     url.pathname = `/project/${subdomain}${url.pathname}`;
     return NextResponse.rewrite(url);

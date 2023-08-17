@@ -21,6 +21,7 @@ export const authOptions = {
     }),
   ],
   adapter: PrismaAdapter(prisma) as Adapter,
+  secret: process.env.NEXTAUTH_SECRET as string,
 };
 
 const handler = NextAuth(authOptions);
