@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  mysql:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: database
+      MYSQL_USER: inscribe
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - inscribe-backend
+
+  inbucket:
+    image: inbucket/inbucket:latest
+    ports:
+      - "1100:1100" # POP3 port
+      - "2500:2500" # SMTP port
+      - "9000:9000" # Web UI
+    networks:
+      - inscribe-backend
+
+networks:
+  inscribe-backend:
+    driver: bridge
+
+volumes:
+  mysql-data:
